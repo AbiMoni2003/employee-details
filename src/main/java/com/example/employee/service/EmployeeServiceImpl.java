@@ -6,6 +6,8 @@ import com.example.employee.entity.Employees;
 import com.example.employee.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +42,10 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
         if (employees.getJoiningDate() == null) {
             return new EmployeesResponseDto("Employee Joining Date is empty");
+        }
+        Date currentDate = new Date(); // This gives the current date and time
+        if (employees.getJoiningDate().after(currentDate)) {
+            return new EmployeesResponseDto("This Date is not valid");
         }
         try {
             Integer employeeId = Integer.parseInt(employees.getEmployeeId());
@@ -109,6 +115,10 @@ public class EmployeeServiceImpl implements EmployeeService{
             }
             if (updatedEmploees.getJoiningDate() == null) {
                 return "Employee Joining Date is empty";
+            }
+            Date currentDate = new Date();
+            if (updatedEmploees.getJoiningDate().after(currentDate)) {
+                return "This date is not valid";
             }
             existingEmployee.setName(updatedEmploees.getName());
             existingEmployee.setDepartment(updatedEmploees.getDepartment());

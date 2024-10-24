@@ -5,7 +5,9 @@ import com.example.employee.dto.EmployeesResponseDto;
 import com.example.employee.entity.Employees;
 import com.example.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -56,5 +58,9 @@ public class EmployeeController {
         } catch (RuntimeException e) {
             return ResponseEntity.ok(e.getMessage());
         }
+    }
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        return new ResponseEntity<>(" Date format is yyyy-MM-dd.", HttpStatus.OK);
     }
 }
