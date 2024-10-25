@@ -73,7 +73,15 @@ Database Tables:
  		In the postman paste the URL->http://localhost:8085/employees/update/{employeeId} to update the specific employee detail and click the PUT method.
    	STEP - 7:
     		In the postman paste the URL->http://localhost:8085/employees/delete/{employeeId} to delete the specific employee record from the database and click the DELETE method.
+      
+      Check Wheather the data are added to the database table:
+      		Query:
+			->use employees;
+		     	->select * from employee_details;
+		You will see the recorded employee details in the table.
 
+  These are all the works i have i done in this task.
+  						ThankYou.
       
 		   		
   	
